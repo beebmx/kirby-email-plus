@@ -36,15 +36,15 @@ final class MailgunProvider extends Email
      */
     public function send(bool $debug = false): bool
     {
-        if (empty(App::instance()->option('beebmx.email+.mailgun.key'))) {
+        if (empty(App::instance()->option('beebmx.email-plus.mailgun.key'))) {
             throw new InvalidArgumentException(
-                message: '"beebmx.email+.mailgun.key" option should be set'
+                message: '"beebmx.email-plus.mailgun.key" option should be set'
             );
         }
 
         $mailgun = Mailgun::create(
-            App::instance()->option('beebmx.email+.mailgun.key'),
-            App::instance()->option('beebmx.email+.mailgun.endpoint', 'https://api.mailgun.net')
+            App::instance()->option('beebmx.email-plus.mailgun.key'),
+            App::instance()->option('beebmx.email-plus.mailgun.endpoint', 'https://api.mailgun.net')
         );
 
         $beforeSend = $this->beforeSend();
@@ -65,7 +65,7 @@ final class MailgunProvider extends Email
 
         $message = $mailgun->messages()
             ->send(
-                domain: App::instance()->option('beebmx.email+.mailgun.domain'),
+                domain: App::instance()->option('beebmx.email-plus.mailgun.domain'),
                 params: array_merge(
                     $this->prepare(file: 'filePath', attachments: 'attachment', path: true),
                     ['o:testmode' => $this->fake === true ? 'yes' : 'no']

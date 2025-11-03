@@ -56,7 +56,7 @@ it('throws an error if no key is set', function () {
     App::instance()
         ->email('mailgun')
         ->send();
-})->throws(InvalidArgumentException::class, '"beebmx.email+.mailgun.key" option should be set');
+})->throws(InvalidArgumentException::class, '"beebmx.email-plus.mailgun.key" option should be set');
 
 it('can set reset with email.transport.type', function () {
     App::destroy();

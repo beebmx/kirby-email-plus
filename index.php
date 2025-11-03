@@ -5,7 +5,7 @@ use Kirby\Cms\App as Kirby;
 
 @include_once __DIR__.'/vendor/autoload.php';
 
-Kirby::plugin('beebmx/email+', [
+Kirby::plugin('beebmx/email-plus', [
     'components' => [
         'email' => fn ($kirby, $props, $debug) => (new TargetEmailProvider)($props, $debug),
     ],

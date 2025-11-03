@@ -34,8 +34,8 @@ final class TargetEmailProvider
 
     private function getTransport(): string
     {
-        return ! empty($this->kirby->option('beebmx.email+.type'))
-            ? $this->kirby->option('beebmx.email+.type')
+        return ! empty($this->kirby->option('beebmx.email-plus.type'))
+            ? $this->kirby->option('beebmx.email-plus.type')
             : $this->kirby->option('email.transport.type');
     }
 }

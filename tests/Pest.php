@@ -77,7 +77,7 @@ function instance(array $roots = [], array $options = [], array $email = [], arr
                 ],
             ], $email),
             'hooks' => $hooks,
-            'beebmx.email+' => array_merge(
+            'beebmx.email-plus' => array_merge(
                 require dirname(__DIR__).'/extensions/options.php',
                 $options
             ),

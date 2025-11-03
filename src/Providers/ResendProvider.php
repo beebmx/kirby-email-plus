@@ -31,14 +31,14 @@ final class ResendProvider extends Email
      */
     public function send(bool $debug = false): bool
     {
-        if (empty(App::instance()->option('beebmx.email+.resend.key'))) {
+        if (empty(App::instance()->option('beebmx.email-plus.resend.key'))) {
             throw new InvalidArgumentException(
-                message: '"beebmx.email+.resend.key" option should be set'
+                message: '"beebmx.email-plus.resend.key" option should be set'
             );
         }
 
         $resend = Resend::client(
-            App::instance()->option('beebmx.email+.resend.key')
+            App::instance()->option('beebmx.email-plus.resend.key')
         );
 
         $beforeSend = $this->beforeSend();

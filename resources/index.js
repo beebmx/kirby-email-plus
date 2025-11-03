@@ -1,3 +1,3 @@
-window.panel.plugin("beebmx/email+", {
+window.panel.plugin("beebmx/email-plus", {
   //
 });

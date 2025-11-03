@@ -5,13 +5,13 @@
 <a href="https://packagist.org/packages/beebmx/kirby-email-plus"><img src="https://img.shields.io/packagist/l/beebmx/kirby-email-plus" alt="License"></a>
 </p>
 
-# Email+ for Kirby
+# Email Plus for Kirby
 
 Kirby has a built-in [email](https://getkirby.com/docs/reference/objects/cms/app/email) engine with support for `mail` and `smtp` transports.
 However, sometimes you may need more support for other email services like [Mailgun](https://www.mailgun.com) or [Resend](https://resend.com).
-Kirby `Email+` extends Kirby's email capabilities by adding support for multiple email services using the same Kirby email API.
+Kirby `Email Plus` extends Kirby's email capabilities by adding support for multiple email services using the same Kirby email API.
 
-![Email+](/.github/assets/banner.jpg)
+![Email Plus](/.github/assets/banner.jpg)
 
 ****
 
@@ -29,7 +29,7 @@ Kirby `Email+` extends Kirby's email capabilities by adding support for multiple
 composer require beebmx/kirby-email-plus
 ```
 
-Additionally to installing the `Email+` plugin, you need to install the email service package you want to use.
+Additionally to installing the `Email Plus` plugin, you need to install the email service package you want to use.
 
 ### Mailgun installation
 
@@ -49,13 +49,13 @@ composer require resend/resend-php
 
 ## Usage
 
-With Kirby `Email+` you can choose between the built-in [Kirby email](https://getkirby.com/docs/guide/emails) transports (`mail` and `smtp`) and the new ones added by this plugin (`mailgun` and `resend`).
+With Kirby `Email Plus` you can choose between the built-in [Kirby email](https://getkirby.com/docs/guide/emails) transports (`mail` and `smtp`) and the new ones added by this plugin (`mailgun` and `resend`).
 
 First you need to configure the email transport you want to use in your `config.php` file:
 
 ```php
 return [
-    'beebmx.email+' => [
+    'beebmx.email-plus' => [
         'type' => 'resend',
         'resend.key' => 're_XXXXXXXXXXXXXXXX',
     ],
@@ -85,25 +85,25 @@ return [
             'type' => 'resend',
         ],
     ],
-    'beebmx.email+.resend.key' => 're_XXXXXXXXXXXXXXXX',
+    'beebmx.email-plus.resend.key' => 're_XXXXXXXXXXXXXXXX',
 ];
 ````
 
 ## Options
 
-| Option                         |   Type   |         Default         | Description                                      |
-|:-------------------------------|:--------:|:-----------------------:|:-------------------------------------------------|
-| beebmx.email+.type             | `string` |          null           | Define the email transport `mailgun` or `resend` |
-| beebmx.email+.mailgun.domain   | `string` |          null           | Define your `mailgun` domain to send emails.     |
-| beebmx.email+.mailgun.endpoint | `string` | https://api.mailgun.net | `https://api.eu.mailgun.net` for EU servers.     |
-| beebmx.email+.mailgun.key      | `string` |          null           | Define your API Key for `mailgun`                |
-| beebmx.email+.resend.key       | `string` |          null           | Define your API Key for `resend`                 |
+| Option                             |   Type   |         Default         | Description                                      |
+|:-----------------------------------|:--------:|:-----------------------:|:-------------------------------------------------|
+| beebmx.email-plus.type             | `string` |          null           | Define the email transport `mailgun` or `resend` |
+| beebmx.email-plus.mailgun.domain   | `string` |          null           | Define your `mailgun` domain to send emails.     |
+| beebmx.email-plus.mailgun.endpoint | `string` | https://api.mailgun.net | `https://api.eu.mailgun.net` for EU servers.     |
+| beebmx.email-plus.mailgun.key      | `string` |          null           | Define your API Key for `mailgun`                |
+| beebmx.email-plus.resend.key       | `string` |          null           | Define your API Key for `resend`                 |
 
 Here's an example of a full use of the options from the `config.php` file:
 
 ```php
 return [
-  'beebmx.email+' => [
+  'beebmx.email-plus' => [
       'type' => 'resend', // mailgun or resend
       'mailgun' => [
           'domain' => 'example.com',
