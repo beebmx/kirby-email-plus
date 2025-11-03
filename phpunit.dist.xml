@@ -15,9 +15,11 @@
         </include>
     </source>
     <php>
+        <!--
         <env name="RESEND_SECRET" value="re_"/>
         <env name="MAILGUN_SECRET" value="mg_"/>
         <env name="MAILGUN_ENDPOINT" value="https://api.mailgun.net"/>
         <env name="MAILGUN_DOMAIN" value="example.com"/>
+        -->
     </php>
 </phpunit>
