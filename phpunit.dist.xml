@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+>
+    <testsuites>
+        <testsuite name="Test Suite">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
+    <php>
+        <env name="RESEND_SECRET" value="re_"/>
+        <env name="MAILGUN_SECRET" value="mg_"/>
+        <env name="MAILGUN_ENDPOINT" value="https://api.mailgun.net"/>
+        <env name="MAILGUN_DOMAIN" value="example.com"/>
+    </php>
+</phpunit>

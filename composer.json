@@ -1,0 +1,65 @@
+{
+    "name": "beebmx/kirby-email-plus",
+    "description": "Kirby `Email+` extends Kirby's email capabilities by adding support for multiple email services using the same Kirby email API.",
+    "license": "MIT",
+    "type": "kirby-plugin",
+    "version": "1.0.0",
+    "homepage": "https://github.com/beebmx/kirby-email-plus",
+    "keywords": [
+        "email",
+        "mail",
+        "kirby",
+        "kirby-plugin",
+        "kirby5"
+    ],
+    "authors": [
+        {
+            "name": "Fernando Gutierrez",
+            "homepage": "https://beeb.mx"
+        }
+    ],
+	"require": {
+        "php": "^8.3",
+		"getkirby/composer-installer": "^1.0"
+	},
+    "require-dev": {
+        "getkirby/cms": "^5.1",
+        "laravel/pint": "^1.0",
+        "mailgun/mailgun-php": "^4.3",
+        "nyholm/psr7": "^1.8",
+        "pestphp/pest": "^4.1",
+        "resend/resend-php": "^1.0",
+        "spatie/ray": "^1.0",
+        "symfony/http-client": "^7.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Beebmx\\KirbEmailPlus\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest"
+    },
+    "suggest": {
+        "resend/resend-php": "Required to enable support for the Resend mail.",
+        "symfony/http-client": "Required to enable support for the Mailgun mail.",
+        "symfony/mailgun-mailer": "Required to enable support for the Mailgun mail.",
+        "nyholm/psr7": "Required to enable support for the Mailgun mail."
+    },
+    "config": {
+        "allow-plugins": {
+            "getkirby/composer-installer": true,
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "extra": {
+        "kirby-cms-path": false,
+        "kirby-plugin-path": "tests/Fixtures/site/plugins"
+    }
+}
