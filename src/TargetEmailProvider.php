@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Beebmx\KirbEmailPlus;
 
-use Beebmx\KirbEmailPlus\Providers\MailgunProvider;
-use Beebmx\KirbEmailPlus\Providers\ResendProvider;
+use Beebmx\KirbEmailPlus\Providers\EmailPlusEmailPlusProvider;
 use Kirby\Cms\App;
 use Kirby\Email\Email;
 use Kirby\Email\PHPMailer;
 use Kirby\Exception\InvalidArgumentException;
+use Kirby\Toolkit\Str;
 
 final class TargetEmailProvider
 {
@@ -23,13 +23,15 @@ final class TargetEmailProvider
     /**
      * @throws InvalidArgumentException
      */
-    public function __invoke(array $props = [], bool $debug = false): Email|MailgunProvider|ResendProvider
+    public function __invoke(array $props = [], bool $debug = false): Email|EmailPlusEmailPlusProvider
     {
-        return match ($this->getTransport()) {
-            'mailgun' => new MailgunProvider($props, $debug),
-            'resend' => new ResendProvider($props, $debug),
-            default => new PHPMailer($props, $debug),
-        };
+        $provider = 'Beebmx\\KirbEmailPlus\\Providers\\'.Str::studly($this->getTransport()).'EmailPlusProvider';
+
+        if (class_exists($provider)) {
+            return new $provider($props, $debug);
+        }
+
+        return new PHPMailer($props, $debug);
     }
 
     private function getTransport(): string

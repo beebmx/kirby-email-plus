@@ -4,32 +4,16 @@ declare(strict_types=1);
 
 namespace Beebmx\KirbEmailPlus\Providers;
 
-use Beebmx\KirbEmailPlus\Concerns\HasSetupEmailOptions;
 use Closure;
 use Kirby\Cms\App;
-use Kirby\Email\Email;
 use Kirby\Exception\InvalidArgumentException;
+use Kirby\Filesystem\F;
 use Kirby\Toolkit\Str;
 use Mailgun\Mailgun;
 use Psr\Http\Client\ClientExceptionInterface;
 
-final class MailgunProvider extends Email
+final class MailgunEmailPlusProvider extends EmailPlusEmailPlusProvider
 {
-    use HasSetupEmailOptions;
-
-    protected bool $fake = true;
-
-    /**
-     * @throws InvalidArgumentException
-     */
-    public function __construct(array $props = [], bool $debug = false)
-    {
-        $this->hasDebugMode = $debug;
-        $this->fake = $props['fake'] ?? false;
-
-        parent::__construct($props, $debug);
-    }
-
     /**
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException
@@ -67,11 +51,32 @@ final class MailgunProvider extends Email
             ->send(
                 domain: App::instance()->option('beebmx.email-plus.mailgun.domain'),
                 params: array_merge(
-                    $this->prepare(file: 'filePath', attachments: 'attachment', path: true),
+                    $this->prepare(),
                     ['o:testmode' => $this->fake === true ? 'yes' : 'no']
                 )
             );
 
         return $this->isSent = Str::startsWith((string) $message->getStatusCode(), '20');
+    }
+
+    public function withAttachments(): array
+    {
+        if (! count($this->attachments())) {
+            return [];
+        }
+
+        return ['attachment' => $this->mapAttatchments($this->attachments())];
+    }
+
+    protected function mapAttatchments(array $attachments): array
+    {
+        return array_map(
+            fn ($attachment) => is_string($attachment)
+                ? [
+                    'filePath' => $attachment,
+                    'filename' => F::filename($attachment),
+                ] : $attachment,
+            $attachments
+        );
     }
 }

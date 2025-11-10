@@ -1,14 +1,16 @@
 {
     "name": "beebmx/kirby-email-plus",
-    "description": "Kirby Email Plus extends Kirby's email capabilities by adding support for multiple email services using the same Kirby email API.",
+    "description": "Email+ extends Kirby's email capabilities by adding support for multiple email services using the same Kirby email API.",
     "license": "MIT",
     "type": "kirby-plugin",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "homepage": "https://github.com/beebmx/kirby-email-plus",
     "keywords": [
         "email",
         "mail",
         "kirby",
+        "resend",
+        "mailgun",
         "kirby-plugin",
         "kirby5"
     ],

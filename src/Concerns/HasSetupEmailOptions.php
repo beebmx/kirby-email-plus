@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Beebmx\KirbEmailPlus\Concerns;
 
-use Kirby\Filesystem\F;
 use Kirby\Toolkit\A;
 
 trait HasSetupEmailOptions
 {
     protected bool $hasDebugMode = false;
 
-    protected function prepare(string $file, string $attachments = 'attachments', bool $path = false): array
+    protected bool $fake = false;
+
+    protected function prepare(): array
     {
         return array_merge([
             'from' => $this->withForm(),
@@ -23,7 +24,7 @@ trait HasSetupEmailOptions
             $this->withReply(),
             $this->withCc(),
             $this->withBcc(),
-            $this->withAttachments($file, $attachments, $path),
+            $this->withAttachments()
         );
     }
 
@@ -74,15 +75,6 @@ trait HasSetupEmailOptions
         return $this->body()->text();
     }
 
-    protected function withAttachments(string $file, string $key, bool $path = false): array
-    {
-        $attachments = $this->attachments();
-
-        return count($attachments)
-            ? [$key => $this->mapAttatchments($file, $attachments, $path)]
-            : [];
-    }
-
     protected function mapEmails(string $target): array
     {
         $emails = A::wrap($this->{$target}());
@@ -90,18 +82,6 @@ trait HasSetupEmailOptions
 
         return array_map(
             fn ($value, $key) => $this->parseEmail($key, $value ?? ''), $emails, $keys
-        );
-    }
-
-    protected function mapAttatchments(string $file, array $attachments, bool $path = false): array
-    {
-        return array_map(
-            fn ($attachment) => is_string($attachment)
-                ? [
-                    $file => $path ? $attachment : F::base64($attachment),
-                    'filename' => F::filename($attachment),
-                ] : $attachment,
-            $attachments
         );
     }
 

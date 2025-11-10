@@ -4,28 +4,15 @@ declare(strict_types=1);
 
 namespace Beebmx\KirbEmailPlus\Providers;
 
-use Beebmx\KirbEmailPlus\Concerns\HasSetupEmailOptions;
 use Closure;
 use Kirby\Cms\App;
-use Kirby\Email\Email;
 use Kirby\Exception\InvalidArgumentException;
+use Kirby\Filesystem\F;
 use Resend;
 use Resend\Client;
 
-final class ResendProvider extends Email
+final class ResendEmailPlusProvider extends EmailPlusEmailPlusProvider
 {
-    use HasSetupEmailOptions;
-
-    /**
-     * @throws InvalidArgumentException
-     */
-    public function __construct(array $props = [], bool $debug = false)
-    {
-        $this->hasDebugMode = $debug;
-
-        parent::__construct($props, $debug);
-    }
-
     /**
      * @throws InvalidArgumentException
      */
@@ -58,9 +45,30 @@ final class ResendProvider extends Email
         }
 
         $sent = $resend->emails->send(
-            parameters: $this->prepare(file: 'content')
+            parameters: $this->prepare(),
         );
 
         return $this->isSent = is_string($sent?->id) && ! is_null($sent?->id);
+    }
+
+    public function withAttachments(): array
+    {
+        if (! count($this->attachments())) {
+            return [];
+        }
+
+        return ['attachments' => $this->mapAttatchments($this->attachments())];
+    }
+
+    protected function mapAttatchments(array $attachments): array
+    {
+        return array_map(
+            fn ($attachment) => is_string($attachment)
+                ? [
+                    'content' => F::base64($attachment),
+                    'filename' => F::filename($attachment),
+                ] : $attachment,
+            $attachments
+        );
     }
 }

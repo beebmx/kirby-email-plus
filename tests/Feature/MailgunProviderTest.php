@@ -15,7 +15,7 @@ beforeEach(function () {
 });
 
 it('can send an email', function () {
-    $mail = $this->kirby->email('mailgun', ['debug' => true, 'fake' => true]);
+    $mail = $this->kirby->email('mailgun', ['debug' => true, 'fake' => false]);
 
     expect($mail)
         ->send()
@@ -36,7 +36,7 @@ it('can add attachments', function () {
     $site = $this->kirby->site();
 
     $mail = $this->kirby->email('mailgun', [
-        'debug' => true,
+        'debug' => true, 'fake' => false,
         'attachments' => [
             $site->file('beeb.png'),
             $site->file('empty.jpg'),

@@ -1,7 +1,7 @@
 <?php
 
-use Beebmx\KirbEmailPlus\Providers\MailgunProvider;
-use Beebmx\KirbEmailPlus\Providers\ResendProvider;
+use Beebmx\KirbEmailPlus\Providers\MailgunEmailPlusProvider;
+use Beebmx\KirbEmailPlus\Providers\ResendEmailPlusProvider;
 use Kirby\Cms\App;
 use Kirby\Email\PHPMailer;
 
@@ -16,14 +16,14 @@ it('return resend email provider', function () {
     $kirby = instance(options: ['type' => 'resend']);
 
     expect($kirby->email('test', ['debug' => true]))
-        ->toBeInstanceOf(ResendProvider::class);
+        ->toBeInstanceOf(ResendEmailPlusProvider::class);
 });
 
 it('return mailgun email provider', function () {
     $kirby = instance(options: ['type' => 'mailgun']);
 
     expect($kirby->email('test', ['debug' => true]))
-        ->toBeInstanceOf(MailgunProvider::class);
+        ->toBeInstanceOf(MailgunEmailPlusProvider::class);
 });
 
 afterEach(function () {
