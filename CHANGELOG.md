@@ -2,6 +2,10 @@
 
 All notable changes to `Email Plus` will be documented in this file.
 
+## 1.2.1 - 2025-11-11
+
+- Update README with better installation instructions
+
 ## 1.2.0 - 2025-11-10
 
 - Refactored EmailPlusProviders for better maintainability

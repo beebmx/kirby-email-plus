@@ -5,13 +5,13 @@
 <a href="https://packagist.org/packages/beebmx/kirby-email-plus"><img src="https://img.shields.io/packagist/l/beebmx/kirby-email-plus" alt="License"></a>
 </p>
 
-# Email Plus for Kirby
+# Email+ for Kirby
 
 Kirby has a built-in [email](https://getkirby.com/docs/reference/objects/cms/app/email) engine with support for `mail` and `smtp` transports.
 However, sometimes you may need more support for other email services like [Mailgun](https://www.mailgun.com) or [Resend](https://resend.com).
-Kirby `Email Plus` extends Kirby's email capabilities by adding support for multiple email services using the same Kirby email API.
+Kirby `Email+` extends Kirby's email capabilities by adding support for multiple email services using the same Kirby email API.
 
-![Email Plus](/.github/assets/banner.jpg)
+![Email+](/.github/assets/banner.jpg)
 
 ****
 
@@ -25,31 +25,27 @@ Kirby `Email Plus` extends Kirby's email capabilities by adding support for mult
 
 ## Installation
 
-```
-composer require beebmx/kirby-email-plus
-```
-
-Additionally to installing the `Email Plus` plugin, you need to install the email service package you want to use.
+Right now, `Email+` supports two additional email transports: `mailgun` and `resend`.
 
 ### Mailgun installation
 
-To use Mailgun as your email transport, you need to install the `mailgun/mailgun-php` package:
+To use Mailgun as your email transport, you need to run the following command to install the required packages:
 
 ```
-composer require mailgun/mailgun-php symfony/http-client nyholm/psr7
+composer require beebmx/kirby-email-plus mailgun/mailgun-php symfony/http-client nyholm/psr7
 ```
 
 ### Resend installation
 
-To use Resend as your email transport, you need to install the `resend/resend-php` package:
+To use Resend as your email transport, you need to run the following command to install the required packages:
 
 ```
-composer require resend/resend-php
+composer require beebmx/kirby-email-plus resend/resend-php
 ```
 
 ## Usage
 
-With Kirby `Email Plus` you can choose between the built-in [Kirby email](https://getkirby.com/docs/guide/emails) transports (`mail` and `smtp`) and the new ones added by this plugin (`mailgun` and `resend`).
+With Kirby `Email+` you can choose between the built-in [Kirby email](https://getkirby.com/docs/guide/emails) transports (`mail` and `smtp`) and the new ones added by this plugin (`mailgun` and `resend`).
 
 First you need to configure the email transport you want to use in your `config.php` file:
 
