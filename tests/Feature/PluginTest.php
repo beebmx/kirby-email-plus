@@ -5,7 +5,6 @@ use Beebmx\KirbEmailPlus\Providers\ResendEmailPlusProvider;
 use Composer\Semver\Semver;
 use Kirby\Cms\App;
 use Kirby\Email\PHPMailer;
-use Kirby\Plugin\Plugin;
 
 beforeEach(function () {
     // App::destroy() clears the plugin registry, so the plugin is registered before every test
@@ -44,7 +43,7 @@ afterEach(function () {
 
 it('registers the plugin', function () {
     expect(App::plugin('beebmx/email-plus'))
-        ->toBeInstanceOf(Plugin::class)
+        ->not->toBeNull()
         ->name()->toBe('beebmx/email-plus');
 });
 

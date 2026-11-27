@@ -2,6 +2,12 @@
 
 All notable changes to `Email Plus` will be documented in this file.
 
+## 2.0.1 - 2026-11-27
+
+- Added support for Kirby 4.9+ (PHP 8.4)
+- Fixed the plugin errors (missing API key, invalid `beforeSend` client) on Kirby 4
+- Added Kirby 4 to the GitHub workflow
+
 ## 2.0.0 - 2026-11-27
 
 - Added support for Kirby 6, keeping support for Kirby 5

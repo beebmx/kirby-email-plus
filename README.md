@@ -27,10 +27,13 @@ Kirby `Email+` extends Kirby's email capabilities by adding support for multiple
 
 ## Compatibility
 
-| Version       | Kirby 5 | Kirby 6 | PHP  |
-|---------------|:-------:|:-------:|------|
-| 2.x           |    ✅    |    ✅    | 8.4+ |
-| 1.0.0 – 1.2.1 |    ✅    |    ❌    | 8.3+ |
+| Version       | Kirby 4 | Kirby 5 | Kirby 6 | PHP  |
+|---------------|:-------:|:-------:|:-------:|------|
+| 2.0.1+        |   ✅*    |    ✅    |    ✅    | 8.4+ |
+| 2.0.0         |    ❌    |    ✅    |    ✅    | 8.4+ |
+| 1.0.0 – 1.2.1 |    ❌    |    ✅    |    ❌    | 8.3+ |
+
+\* Kirby 4.9 or newer, with PHP 8.4.
 
 ## Installation
 

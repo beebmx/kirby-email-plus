@@ -3,7 +3,7 @@
     "description": "Email+ extends Kirby's email capabilities by adding support for multiple email services using the same Kirby email API.",
     "license": "MIT",
     "type": "kirby-plugin",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "homepage": "https://github.com/beebmx/kirby-email-plus",
     "keywords": [
         "email",
@@ -12,6 +12,7 @@
         "resend",
         "mailgun",
         "kirby-plugin",
+        "kirby4",
         "kirby5",
         "kirby6"
     ],
@@ -26,7 +27,7 @@
         "getkirby/composer-installer": "^1.2"
     },
     "require-dev": {
-        "getkirby/cms": "^5.0 || ^6.0",
+        "getkirby/cms": "^4.9 || ^5.0 || ^6.0",
         "laravel/pint": "^1.32",
         "mailgun/mailgun-php": "^4.5",
         "nyholm/psr7": "^1.8.2",
@@ -62,7 +63,7 @@
     },
     "extra": {
         "kirby": {
-            "compatible": "^5.0 || ^6.0"
+            "compatible": "^4.9 || ^5.0 || ^6.0"
         },
         "kirby-cms-path": false,
         "kirby-plugin-path": "tests/Fixtures/site/plugins"

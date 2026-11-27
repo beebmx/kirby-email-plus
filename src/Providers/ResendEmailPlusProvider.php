@@ -20,7 +20,7 @@ final class ResendEmailPlusProvider extends EmailPlusEmailPlusProvider
     {
         if (empty(App::instance()->option('beebmx.email-plus.resend.key'))) {
             throw new InvalidArgumentException(
-                message: '"beebmx.email-plus.resend.key" option should be set'
+                '"beebmx.email-plus.resend.key" option should be set'
             );
         }
 
@@ -35,7 +35,7 @@ final class ResendEmailPlusProvider extends EmailPlusEmailPlusProvider
 
             if ($client instanceof Client === false) {
                 throw new InvalidArgumentException(
-                    message: '"beforeSend" option return should be instance of Resend\Client class'
+                    '"beforeSend" option return should be instance of Resend\Client class'
                 );
             }
 

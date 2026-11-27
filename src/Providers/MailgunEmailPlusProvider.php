@@ -22,7 +22,7 @@ final class MailgunEmailPlusProvider extends EmailPlusEmailPlusProvider
     {
         if (empty(App::instance()->option('beebmx.email-plus.mailgun.key'))) {
             throw new InvalidArgumentException(
-                message: '"beebmx.email-plus.mailgun.key" option should be set'
+                '"beebmx.email-plus.mailgun.key" option should be set'
             );
         }
 
@@ -38,7 +38,7 @@ final class MailgunEmailPlusProvider extends EmailPlusEmailPlusProvider
 
             if ($client instanceof Mailgun === false) {
                 throw new InvalidArgumentException(
-                    message: '"beforeSend" option return should be instance of Mailgun\Mailgun class'
+                    '"beforeSend" option return should be instance of Mailgun\Mailgun class'
                 );
             }
 
