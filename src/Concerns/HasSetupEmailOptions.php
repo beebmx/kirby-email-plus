@@ -15,7 +15,7 @@ trait HasSetupEmailOptions
     protected function prepare(): array
     {
         return array_merge([
-            'from' => $this->withForm(),
+            'from' => $this->withFrom(),
             'to' => $this->withTo(),
             'subject' => $this->subject(),
             'html' => $this->getHtml(),
@@ -28,7 +28,7 @@ trait HasSetupEmailOptions
         );
     }
 
-    protected function withForm(): string
+    protected function withFrom(): string
     {
         return $this->parseEmail($this->from(), $this->fromName() ?? '');
     }

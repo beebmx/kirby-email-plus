@@ -27,7 +27,7 @@ final class TargetEmailProvider
     {
         $provider = 'Beebmx\\KirbEmailPlus\\Providers\\'.Str::studly($this->getTransport()).'EmailPlusProvider';
 
-        if (class_exists($provider)) {
+        if (is_subclass_of($provider, EmailPlusEmailPlusProvider::class)) {
             return new $provider($props, $debug);
         }
 
@@ -36,8 +36,7 @@ final class TargetEmailProvider
 
     private function getTransport(): string
     {
-        return ! empty($this->kirby->option('beebmx.email-plus.type'))
-            ? $this->kirby->option('beebmx.email-plus.type')
-            : $this->kirby->option('email.transport.type');
+        return (string) ($this->kirby->option('beebmx.email-plus.type')
+            ?: $this->kirby->option('email.transport.type'));
     }
 }

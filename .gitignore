@@ -25,7 +25,7 @@ phpunit.xml
 .cache
 
 # kirbyup temp development entry
-/index.dev.mjs
+/index.dev.*
 
 # Fixtures
 /tests/Fixtures/site/plugins

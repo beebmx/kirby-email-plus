@@ -17,11 +17,20 @@ Kirby `Email+` extends Kirby's email capabilities by adding support for multiple
 
 ## Overview
 
-- [1. Installation](#installation)
-- [2. Usage](#usage)
-- [3. Options](#options)
-- [4. License](#license)
-- [5. Credits](#credits)
+- [1. Compatibility](#compatibility)
+- [2. Installation](#installation)
+- [3. Usage](#usage)
+- [4. Options](#options)
+- [5. Testing](#testing)
+- [6. License](#license)
+- [7. Credits](#credits)
+
+## Compatibility
+
+| Version       | Kirby 5 | Kirby 6 | PHP  |
+|---------------|:-------:|:-------:|------|
+| 2.x           |    ✅    |    ✅    | 8.4+ |
+| 1.0.0 – 1.2.1 |    ✅    |    ❌    | 8.3+ |
 
 ## Installation
 
@@ -111,6 +120,21 @@ return [
       ],
   ],
 ];
+```
+
+## Testing
+
+The tests never call the Resend or Mailgun APIs: they run in debug mode or against a mocked HTTP client, so no email is sent and no API key is needed:
+
+```
+composer test
+```
+
+To work on the Panel assets you need Node.js 24 or newer:
+
+```
+npm install
+npm run build
 ```
 
 ## License

@@ -41,6 +41,8 @@ final class MailgunEmailPlusProvider extends EmailPlusEmailPlusProvider
                     message: '"beforeSend" option return should be instance of Mailgun\Mailgun class'
                 );
             }
+
+            $mailgun = $client;
         }
 
         if (! $this->fake && ($debug === true || $this->hasDebugMode === true)) {
@@ -65,10 +67,10 @@ final class MailgunEmailPlusProvider extends EmailPlusEmailPlusProvider
             return [];
         }
 
-        return ['attachment' => $this->mapAttatchments($this->attachments())];
+        return ['attachment' => $this->mapAttachments($this->attachments())];
     }
 
-    protected function mapAttatchments(array $attachments): array
+    protected function mapAttachments(array $attachments): array
     {
         return array_map(
             fn ($attachment) => is_string($attachment)

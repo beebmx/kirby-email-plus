@@ -3,7 +3,7 @@
     "description": "Email+ extends Kirby's email capabilities by adding support for multiple email services using the same Kirby email API.",
     "license": "MIT",
     "type": "kirby-plugin",
-    "version": "1.2.1",
+    "version": "2.0.0",
     "homepage": "https://github.com/beebmx/kirby-email-plus",
     "keywords": [
         "email",
@@ -12,7 +12,8 @@
         "resend",
         "mailgun",
         "kirby-plugin",
-        "kirby5"
+        "kirby5",
+        "kirby6"
     ],
     "authors": [
         {
@@ -20,19 +21,18 @@
             "homepage": "https://beeb.mx"
         }
     ],
-	"require": {
-        "php": "^8.3",
-		"getkirby/composer-installer": "^1.0"
-	},
+    "require": {
+        "php": "^8.4",
+        "getkirby/composer-installer": "^1.2"
+    },
     "require-dev": {
-        "getkirby/cms": "^5.1",
-        "laravel/pint": "^1.0",
-        "mailgun/mailgun-php": "^4.3",
-        "nyholm/psr7": "^1.8",
-        "pestphp/pest": "^4.1",
-        "resend/resend-php": "^1.0",
-        "spatie/ray": "^1.0",
-        "symfony/http-client": "^7.3"
+        "getkirby/cms": "^5.0 || ^6.0",
+        "laravel/pint": "^1.32",
+        "mailgun/mailgun-php": "^4.5",
+        "nyholm/psr7": "^1.8.2",
+        "pestphp/pest": "^5.3",
+        "resend/resend-php": "^1.19",
+        "symfony/http-client": "^8.1"
     },
     "autoload": {
         "psr-4": {
@@ -50,7 +50,7 @@
     "suggest": {
         "resend/resend-php": "Required to enable support for the Resend mail.",
         "symfony/http-client": "Required to enable support for the Mailgun mail.",
-        "symfony/mailgun-mailer": "Required to enable support for the Mailgun mail.",
+        "mailgun/mailgun-php": "Required to enable support for the Mailgun mail.",
         "nyholm/psr7": "Required to enable support for the Mailgun mail."
     },
     "config": {
@@ -61,6 +61,9 @@
         }
     },
     "extra": {
+        "kirby": {
+            "compatible": "^5.0 || ^6.0"
+        },
         "kirby-cms-path": false,
         "kirby-plugin-path": "tests/Fixtures/site/plugins"
     }

@@ -2,6 +2,15 @@
 
 use Beebmx\KirbEmailPlus\TargetEmailProvider;
 use Kirby\Cms\App;
+use Mailgun\HttpClient\HttpClientConfigurator;
+use Mailgun\Mailgun;
+use Resend\Client as ResendClient;
+use Resend\Transporters\HttpTransporter;
+use Resend\ValueObjects\ApiKey;
+use Resend\ValueObjects\Transporter\BaseUri;
+use Resend\ValueObjects\Transporter\Headers;
+use Tests\Fakes\FakeHttpClient;
+use Tests\TestCase;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +23,7 @@ use Kirby\Cms\App;
 |
 */
 
-pest()->extend(Tests\TestCase::class)->in('Feature');
+pest()->extend(TestCase::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
@@ -88,4 +97,47 @@ function instance(array $roots = [], array $options = [], array $email = [], arr
 function fixtures(string $path): string
 {
     return dirname(__DIR__).'/tests/Fixtures/'.$path;
+}
+
+/**
+ * A real Resend client whose HTTP calls go to the fake client
+ */
+function fakeResend(FakeHttpClient $http): ResendClient
+{
+    return new ResendClient(new HttpTransporter(
+        $http,
+        BaseUri::from('api.resend.com'),
+        Headers::withAuthorization(ApiKey::from('re_test'))
+    ));
+}
+
+/**
+ * A real Mailgun client whose HTTP calls go to the fake client
+ */
+function fakeMailgun(FakeHttpClient $http): Mailgun
+{
+    return new Mailgun(
+        (new HttpClientConfigurator)
+            ->setApiKey('mg_test')
+            ->setEndpoint('https://api.mailgun.net')
+            ->setHttpClient($http)
+    );
+}
+
+/**
+ * A "beforeSend" callback that swaps the SDK client for the given one.
+ * Kirby binds the callback to the email, so the client is captured here.
+ */
+function returning(object $client): Closure
+{
+    return fn () => $client;
+}
+
+/**
+ * Reads an environment variable (see phpunit.dist.xml) with a dummy fallback,
+ * so the tests run without API keys. The tests never send a real email.
+ */
+function testEnv(string $key, string $default): string
+{
+    return getenv($key) ?: $default;
 }

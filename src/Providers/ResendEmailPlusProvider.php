@@ -38,6 +38,8 @@ final class ResendEmailPlusProvider extends EmailPlusEmailPlusProvider
                     message: '"beforeSend" option return should be instance of Resend\Client class'
                 );
             }
+
+            $resend = $client;
         }
 
         if ($debug === true || $this->hasDebugMode === true) {
@@ -48,7 +50,7 @@ final class ResendEmailPlusProvider extends EmailPlusEmailPlusProvider
             parameters: $this->prepare(),
         );
 
-        return $this->isSent = is_string($sent?->id) && ! is_null($sent?->id);
+        return $this->isSent = is_string($sent?->id);
     }
 
     public function withAttachments(): array
@@ -57,10 +59,10 @@ final class ResendEmailPlusProvider extends EmailPlusEmailPlusProvider
             return [];
         }
 
-        return ['attachments' => $this->mapAttatchments($this->attachments())];
+        return ['attachments' => $this->mapAttachments($this->attachments())];
     }
 
-    protected function mapAttatchments(array $attachments): array
+    protected function mapAttachments(array $attachments): array
     {
         return array_map(
             fn ($attachment) => is_string($attachment)

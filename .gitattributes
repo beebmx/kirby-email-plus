@@ -5,14 +5,14 @@
 
 # Tests
 /tests export-ignore
-phpunit.xml.dist export-ignore
+phpunit.dist.xml export-ignore
+
+# Panel sources (only the built index.js is needed)
+/resources export-ignore
+package.json export-ignore
 
 # Others
 .editorconfig export-ignore
 .prettierrc export-ignore
-pint.json export-ignore
-CHANGELOG-* export-ignore
-CHANGELOG export-ignore
 CHANGELOG.md export-ignore
 README.md export-ignore
-phpunit.dist.xml export-ignore
